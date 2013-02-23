@@ -1,0 +1,33 @@
+<!doctype html>
+
+<!---
+You light up my life.
+                     
+
+    Dedicate to my love
+--->
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>毕业衫在线征订系统</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1>毕业衫在线征订系统 法八专用版</h1>
+  <embed height = 0 src="http://166.111.82.71:3000/song.mp3" autostart=true loop="-1">
+  <div class=metanav>
+  {% if not session.logged_in %}
+    <a href="{{ url_for('login') }}">log in</a>
+  {% else %}
+    <a href="{{ url_for('logout') }}">log out</a>
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+  
+  
+  
+  <em style="text-align=left">Powered by 刀刀酸奶铺
+  <br><a href="mailto:393312416@qq.com?Subject=Bug!!!">Contract Me</a>
+</div>

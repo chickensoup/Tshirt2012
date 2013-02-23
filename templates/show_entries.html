@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in and session['cnname']%}
+    <ul class=entries>
+   <p>欢迎 亲爱的    {{ session['cnname'] }} </p>
+
+    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <dl>
+        <em>文化衫样式编号:
+        <select name=typeid>
+           <option value="1">1</option>
+           <option value="2">2</option>
+           <option value="3">3</option>
+           <option value="4">4</option>
+           <option value="5">5</option>
+           <option value="6">6</option>
+           <option value="7">7</option>
+           <option value="8">8</option>
+           <option value="9">9</option>
+           <option value="10">10</option>
+           <option value="11">11</option>
+           <option value="12">12</option>
+           <option value="13">13</option>
+           <option value="14">14</option>
+           <option value="15">15</option>
+           <option value="16">16</option>
+           <option value="17">17</option>
+           <option value="18">18</option>
+           <option value="19">19</option>
+           <option value="20">20</option>
+           <option value="21">21</option>
+        </select>
+        <em>男女款:
+        <select name=sex>
+           <option value="1">男</option>
+           <option value="2">女</option>
+        </select>
+	 <em>尺码:
+        <select name=tsize>
+           <option value="S">S</option>
+           <option value="M">M</option>
+           <option value="L">L</option>
+           <option value="XL">XL</option>
+           <option value="XXL">XXL</option>
+           <option value="XXXL">XXXL</option>
+        </select>
+        <em>数量:
+         <select name=num>
+           <option value="1">1</option>
+           <option value="2">2</option>
+           <option value="3">3</option>
+           <option value="4">4</option>
+           <option value="5">5</option>
+           <option value="6">6</option>
+           <option value="7">7</option>
+           <option value="8">8</option>
+           <option value="9">9</option>
+           <option value="10">10</option>
+        </select>
+     <!---   
+<em><input type=submit value='提交订单'>
+--->
+        <dd>
+      </dl>
+    </form>
+  
+  <form action="{{ url_for('delete_entry') }}" method=post class=delete-entry>
+      <dl>
+        <em>删除订单编号:<input type=txt name=orderid>
+ <!---           
+<em><input type=submit value='删除订单'>
+--->
+      </dl>
+    </form>
+  
+  <table border = "2" width="100%">
+  <tr>
+    <th style="background-color=yello">订单编号</th>
+    <th>文化衫类型编号</th>    
+    <th>男女款</th>
+    <th>尺码</th>
+    <th>数量</th>
+  </tr>
+  {% for entry in entries %}
+  <tr>
+    <th style='bgcolor=green'>{{ entry.orderid }}</th>
+    <th>{{entry.typeid}}</th>    
+    <th>{% if entry.sex == 1%}男{%else %}女{%endif%}</th>
+    <th>{{entry.tsize}}</th>  
+    <th>{{ entry.num }}</th>
+  {% else %}
+    <li><em>No orders here so far</em>
+  {% endfor %}
+  </tr>
+  </table>
+  </ul>
+  <br><br>
+  <h2>标准尺码表</h2>
+<table border = "2" width="50%">
+<tr><th>尺码</th><th>身高</th><th>胸围</th><th>衣长</th></tr>
+<tr><th>S</th><th>160-165</th><th>96</th><th>66</th></tr>
+<tr><th>M</th><th>165-170</th><th>100</th><th>70</th></tr>
+<tr><th>L</th><th>170-175</th><th>104</th><th>72</th></tr>
+<tr><th>XL</th><th>175-180</th><th>110</th><th>74</th></tr>
+<tr><th>2XL</th><th>180-185</th><th>116</th><th>76</th></tr>
+<tr><th>3XL</th><th>185以上</th><th>122</th><th>78</th></tr>
+</table>
+<br><br>
+  <h2>方案设计图</h2>
+  <p>学生会给我发的图就是这么大了，想看清晰点的图片的请移步 <a target="_blank" href = "http://166.111.82.71:3000">大图相册</a></p>
+  <p>请注意：文化衫样式编号以本页面的01-21阿拉伯数字编号为准，不是方案一到方案七的中文数字。<br>大图预览页面只是提供大图预览功能，上面写的方案一到方案七不是这里要填的方案编号，别填错样式编号了～～</a></p>
+  <table border = "2" width="33%">
+  <tr><th>文化衫样式编号01</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/01.png" /></th>
+  <tr><th>文化衫样式编号02</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/02.png" /></th>
+  <tr><th>文化衫样式编号03</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/03.png" /></th>
+  <tr><th>文化衫样式编号04</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/04.png" /></th>
+  <tr><th>文化衫样式编号05</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/05.png" /></th>
+  <tr><th>文化衫样式编号06</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/06.png" /></th>
+  <tr><th>文化衫样式编号07</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/07.png" /></th>
+  <tr><th>文化衫样式编号08</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/08.png" /></th>
+  <tr><th>文化衫样式编号09</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/09.png" /></th>
+  <tr><th>文化衫样式编号10</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/10.png" /></th>
+  <tr><th>文化衫样式编号11</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/11.png" /></th>
+  <tr><th>文化衫样式编号12</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/12.png" /></th>
+  <tr><th>文化衫样式编号13</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/13.png" /></th>
+  <tr><th>文化衫样式编号14</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/14.png" /></th>
+  <tr><th>文化衫样式编号15</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/15.png" /></th>
+  <tr><th>文化衫样式编号16</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/16.png" /></th>
+  <tr><th>文化衫样式编号17</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/17.png" /></th>
+  <tr><th>文化衫样式编号18</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/18.png" /></th>
+  <tr><th>文化衫样式编号19</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/19.png" /></th>
+  <tr><th>文化衫样式编号20</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/20.png" /></th>
+  <tr><th>文化衫样式编号21</th>
+  <tr><th><img src = "http://166.111.82.71:3000/images/21.png" /></th>
+  </tr>
+  </table>
+  
+  
+  
+  {% endif %}
+{% endblock %}
+
